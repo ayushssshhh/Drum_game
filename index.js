@@ -45,8 +45,19 @@ function makeSound(key){
     }
 }
 
+function animate(key) {
+    var pressedKey = document.querySelector("." + key);
+
+    pressedKey.classList.add("pressed");
+
+    setTimeout(function(){
+        pressedKey.classList.remove("pressed");
+    } , 200)
+}
+
 document.addEventListener("keydown" , function(event){
         makeSound(event.key);
+        animate(event.key);
 });
 
 
@@ -55,5 +66,6 @@ var noOfDrum = document.getElementsByClassName("drum").length;
 for(var i = 0 ; i<noOfDrum ; i++){
     document.getElementsByClassName("drum")[i].addEventListener("click" , function(){
         makeSound(this.innerHTML);
+        animate(this.innerHTML);
     });
 }
